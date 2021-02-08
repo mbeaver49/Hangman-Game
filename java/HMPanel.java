@@ -42,7 +42,6 @@ public class HMPanel extends JPanel{
 	private JPanel guessPanel = new JPanel();
 	private JButton guessButton = new JButton("Guess a Letter");
 	private JTextField guessField = new JTextField(10);
-
 	//area to display resulting guess information (# of trys left and letters guessed)
 	private JPanel guessesPanel = new JPanel();
 	private JLabel guessesLabel = new JLabel("Already guessed: ");
@@ -50,6 +49,7 @@ public class HMPanel extends JPanel{
 
 	//initialize class drawHM
 	private DrawHM drawHM;
+  private JPanel drawPanel = new JPanel();
 
 
 	//layouts of panels that need to be added to HMPanel
@@ -106,7 +106,11 @@ public class HMPanel extends JPanel{
 		guessesPanel.setLayout(rectLayout);
 		guessesPanel.add(guessesLabel);
 		guessesPanel.add(guessesField);
+    guessesField.setEditable(false);
 		add(guessesPanel);
+
+    drawPanel.setLayout(rectLayout);
+    add(drawPanel);
 
 		numberForm =NumberFormat.getNumberInstance();
 		numberForm.setMaximumFractionDigits(2);
@@ -246,7 +250,7 @@ public class HMPanel extends JPanel{
 
 	public void gameState(int aog, int right, int wrong, int wLength){
 		if(wrong == aog){
-			if(JOptionPane.showConfirmDialog(null, "You Lost\nKeep Playing?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+			if(JOptionPane.showConfirmDialog(null, "You Lost\nWord was: "+ word +"\nKeep Playing?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 				resetGame();
 			} else {
     		System.exit(0);
@@ -274,7 +278,13 @@ public class HMPanel extends JPanel{
 				incorrect++;
 				incorrectAnswerInfo.setText("Wrong: "+ incorrect);
 				gameState(amountOfGuesses, correct, incorrect, word.length());
-			}else{
+        drawHM = new DrawHM(incorrect);
+        drawHM.setPreferredSize(new Dimension(500, 500));
+        revalidate();
+        repaint();
+        drawPanel.add(drawHM);
+
+    }else{
 				int ind = getChars(gg, word);
 				if(ind < 0){
 					JFrame frame = new JFrame("Error in Getting Chars");
