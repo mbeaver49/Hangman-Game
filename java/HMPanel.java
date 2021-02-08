@@ -109,7 +109,7 @@ public class HMPanel extends JPanel{
     guessesField.setEditable(false);
 		add(guessesPanel);
 
-    drawPanel.setLayout(rectLayout);
+    drawPanel.setLayout(boxLayout);
     add(drawPanel);
 
 		numberForm =NumberFormat.getNumberInstance();
@@ -246,6 +246,16 @@ public class HMPanel extends JPanel{
 		correctAnswerInfo.setText("Right: "+ correct);
 		incorrectAnswerInfo.setText("Wrong: "+ incorrect);
 		guessesField.setText("");
+
+
+    drawHM = new DrawHM(0);
+    drawHM.setPreferredSize(new Dimension(500, 500));
+
+    drawPanel.removeAll();
+    drawPanel.revalidate();
+    drawPanel.repaint();
+    drawPanel.add(drawHM);
+
 	}
 
 	public void gameState(int aog, int right, int wrong, int wLength){
@@ -276,13 +286,17 @@ public class HMPanel extends JPanel{
 			boolean checker = isCorrect(gg, word);
 		if(!checker){
 				incorrect++;
-				incorrectAnswerInfo.setText("Wrong: "+ incorrect);
-				gameState(amountOfGuesses, correct, incorrect, word.length());
+
         drawHM = new DrawHM(incorrect);
         drawHM.setPreferredSize(new Dimension(500, 500));
-        revalidate();
-        repaint();
+
+        drawPanel.removeAll();
+        drawPanel.revalidate();
+        drawPanel.repaint();
         drawPanel.add(drawHM);
+
+        incorrectAnswerInfo.setText("Wrong: "+ incorrect);
+				gameState(amountOfGuesses, correct, incorrect, word.length());
 
     }else{
 				int ind = getChars(gg, word);
