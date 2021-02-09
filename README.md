@@ -1,24 +1,23 @@
-# Foobar
+# Hangman Game
 
-Foobar is a Python library for dealing with word pluralization.
+Hangman Game is a game written in Java that uses the JFrame Library as a GUI.
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Use the development kit [JDK](https://www.oracle.com/java/technologies/javase-downloads.html) to compile game.
 
 ```bash
-pip install foobar
+javac Game.java
 ```
 
 ## Usage
 
-```python
-import foobar
-
-foobar.pluralize('word') # returns 'words'
-foobar.pluralize('goose') # returns 'geese'
-foobar.singularize('phenomena') # returns 'phenomenon'
+```bash
+//Start Game
+java Game words.txt
 ```
+
+If you want, you can feed the game a differen't text file that's in the same format as words.txt.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
