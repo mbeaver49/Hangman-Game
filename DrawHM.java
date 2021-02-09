@@ -1,16 +1,16 @@
+/**
+ * This class takes the argument of the amount of guesses left
+ * to indicate which visual state the hangman image will be.
+ * 
+ * author Manvel Beaver
+ */
+
+
 import java.awt.*;
 import javax.swing.*;
 import java.lang.*;
 import java.awt.geom.*;
 
-
-
-/**
-* This class takes the argument of the amount of guesses left
-* to indicate which visual state the hangman image will be.
-* 
-* @author Manvel Beaver
-*/
 public class DrawHM extends JComponent {
 
     private int incorrect;

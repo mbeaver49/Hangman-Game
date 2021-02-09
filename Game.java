@@ -1,3 +1,11 @@
+/*** Game.java is main for our JVE.
+     Takes .txt file as its only argument to make a dictionary out of.
+
+
+     author: Manvel Beaver
+***/
+
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -19,6 +27,7 @@ public class Game extends JFrame{
 	}
 
 	public static void main(String[] args){
+    //Check if we have any arguments, if not then exit.
 		try{
 			if(args.length > 0){
 				String file_name = args[0];

@@ -1,3 +1,13 @@
+/*** HMPanel.java handles the JFrame library to setup
+     a framework for a user to interact with a GUI.
+     It also handles the game engine since events are handled
+     by JFrame modules.
+
+     author: Manvel Beaver
+
+ ***/
+
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -9,11 +19,6 @@ import javax.swing.*;
 import java.util.Arrays;
 
 
-/**
- * This is our Game
- *
- * @author Beaver
- */
 public class HMPanel extends JPanel{
 	//initizlize variables
 	private String word;
@@ -57,6 +62,7 @@ public class HMPanel extends JPanel{
 	GridLayout boxLayout = new GridLayout(1,1);
 	NumberFormat numberForm;
 
+  //HMPanel Constructor
 	public HMPanel(ArrayList<String> dict){
 		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
@@ -117,6 +123,7 @@ public class HMPanel extends JPanel{
 
 	}
 
+  //Helper functions
 	public boolean isLetter(String s) {
     for (int i = 0; i < s.length(); i++){
     	if (Character.isDigit(s.charAt(i))  == true){
@@ -143,6 +150,7 @@ public class HMPanel extends JPanel{
 		}
 	}
 
+  //Function to make sure the user enters in correct input.
 	public String checkValidInputGuess(String g, String lettersG){
 		if(!isLetter(g)){
 			if(!isSingle(g)){
@@ -200,6 +208,7 @@ public class HMPanel extends JPanel{
 		}
 	}
 
+  //More helper functions
 	public boolean isCorrect(String guess, String gWord){
 		for(int i = 0; i < gWord.length(); i++){
 			if(gWord.charAt(i) == guess.charAt(0)){
@@ -227,7 +236,7 @@ public class HMPanel extends JPanel{
 		for(int i = 0; i < wtg.length(); i++){	rString+= (uDisp[i]+ " ");}
 		return rString;
 	}
-
+  //If win or lose, game is reset.
 	public void resetGame(){
 		Random random = new Random();
 		String word = dict.get(random.nextInt(dict.size()));
@@ -258,6 +267,7 @@ public class HMPanel extends JPanel{
 
 	}
 
+  //The state is determined by the Amount of Guesses, right answer, wrong answers, and words length.
 	public void gameState(int aog, int right, int wrong, int wLength){
 		if(wrong == aog){
 			if(JOptionPane.showConfirmDialog(null, "You Lost\nWord was: "+ word +"\nKeep Playing?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
@@ -275,6 +285,7 @@ public class HMPanel extends JPanel{
 		}
 	}
 
+  //This is where the game engine is implemented.
 	private class PlayingGame implements ActionListener{
 		public void actionPerformed(ActionEvent event){
 			String g = guessField.getText();
