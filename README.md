@@ -2,7 +2,14 @@
 
 Hangman Game is a game written in Java that uses the JFrame Library as a GUI.
 
-## Installation
+## Install
+
+```bash
+git clone https://github.com/mbeaver49/Hangman-Game.git
+cd Hangman-Game
+```
+
+## Compile
 
 Use the development kit [JDK](https://www.oracle.com/java/technologies/javase-downloads.html) to compile game.
 
